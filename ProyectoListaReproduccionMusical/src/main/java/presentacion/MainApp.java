@@ -26,6 +26,7 @@ public class MainApp extends javax.swing.JFrame {
      * Creates new form MainApp
      */
     public MainApp(GestorMusica gestor) {
+        
         initComponents();
         this.gestor = gestor;
         setLocationRelativeTo(null);
@@ -169,8 +170,11 @@ public class MainApp extends javax.swing.JFrame {
                 "Buscar Playlist",
                 JOptionPane.PLAIN_MESSAGE
         );
-        CatalogoCanciones catalogo = new CatalogoCanciones(gestor, playlist, ModoVentana.AGREGAR);
-        catalogo.setVisible(true);
+        if(playlist != null){
+            CatalogoCanciones catalogo = new CatalogoCanciones(gestor, playlist, ModoVentana.AGREGAR);
+            catalogo.setVisible(true);
+        }
+        
     }//GEN-LAST:event_agregaCancionActionPerformed
 
     private void reproducirPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reproducirPlaylistActionPerformed
