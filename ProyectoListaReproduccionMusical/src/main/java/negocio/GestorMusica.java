@@ -35,7 +35,7 @@ public class GestorMusica {
         Optional<Playlist> playlistOpt = repositorio.buscarPlaylist(nombrePlaylist);
         List<Cancion> biblioteca = repositorio.obtenerTodasLasCanciones();
 
-        if (playlistOpt.isPresent() && indiceCancionBiblioteca >= 0 && indiceCancionBiblioteca < biblioteca.size()) {
+        if (playlistOpt.isPresent()) {
             Cancion cancion = biblioteca.get(indiceCancionBiblioteca);
             playlistOpt.get().agregarCancion(cancion);
         } else {

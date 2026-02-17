@@ -32,4 +32,10 @@ public class Playlist {
             this.canciones.remove(indice);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Playlist{" + "nombre=" + nombre + ", canciones=" + canciones + '}';
+    }
+    
 }

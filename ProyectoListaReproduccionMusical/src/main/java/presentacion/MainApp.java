@@ -127,7 +127,7 @@ public class MainApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,10 +156,21 @@ public class MainApp extends javax.swing.JFrame {
     private void bibliotecaCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaCancionesActionPerformed
         // TODO add your handling code here:
         
+        CatalogoCanciones catalogo = new CatalogoCanciones(gestor,null,ModoVentana.SOLO_MOSTRAR);
+        catalogo.setVisible(true);
     }//GEN-LAST:event_bibliotecaCancionesActionPerformed
 
     private void agregaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregaCancionActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:String playlist = JOptionPane.showInputDialog(
+                
+         String playlist = JOptionPane.showInputDialog(
+                this,
+                "Escribe el nombre de la playlist destino:",
+                "Buscar Playlist",
+                JOptionPane.PLAIN_MESSAGE
+        );
+        CatalogoCanciones catalogo = new CatalogoCanciones(gestor, playlist, ModoVentana.AGREGAR);
+        catalogo.setVisible(true);
     }//GEN-LAST:event_agregaCancionActionPerformed
 
     private void reproducirPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reproducirPlaylistActionPerformed
