@@ -62,7 +62,7 @@ public class GestorMusica {
                 System.out.println("(La lista está vacía)");
             } else {
                 for (Cancion c : p.getCanciones()) {
-                    System.out.println("🎵 Reproduciendo: " + c.getTitulo() + " - " + c.getArtista() + "...");
+                    System.out.println("Reproduciendo: " + c.getTitulo() + " - " + c.getArtista() + "...");
                     try { Thread.sleep(1000); } catch (InterruptedException e) {} // Simula tiempo
                 }
             }
