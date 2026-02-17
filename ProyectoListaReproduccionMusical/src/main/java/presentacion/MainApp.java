@@ -175,6 +175,13 @@ public class MainApp extends javax.swing.JFrame {
 
     private void reproducirPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reproducirPlaylistActionPerformed
         // TODO add your handling code here:
+        String playlist = JOptionPane.showInputDialog(
+                this,
+                "Escribe el nombre de la playlist destino:",
+                "Buscar Playlist",
+                JOptionPane.PLAIN_MESSAGE
+        );
+        gestor.reproducirPlaylist(playlist);
     }//GEN-LAST:event_reproducirPlaylistActionPerformed
     
     
