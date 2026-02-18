@@ -6,11 +6,14 @@ package presentacion;
 
 import dominio.Cancion;
 import dominio.Playlist;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
 import negocio.GestorMusica;
 
 /**
@@ -18,7 +21,8 @@ import negocio.GestorMusica;
  * @author ramonsebastianzamudioayala
  */
 public class Reproductor extends javax.swing.JFrame {
-    List<Cancion> canciones;
+    private List<Cancion> canciones;
+    private JProgressBar progressBar;
     /**
      * Creates new form Reproductor
      */
@@ -28,6 +32,10 @@ public class Reproductor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         Playlist play = gestor.buscarPlayList(playlist);
         this.canciones = play.getCanciones();
+        progressBar = new JProgressBar(0, 100);
+        progressBar.setStringPainted(true);
+        panelControles.setLayout(new BorderLayout());
+        panelControles.add(progressBar, BorderLayout.CENTER);
         cargaCancionActual();
         jScrollPane1.setPreferredSize(new Dimension(150, 300));
     }
@@ -52,6 +60,22 @@ public class Reproductor extends javax.swing.JFrame {
        jLabel4.setText(canciones.getFirst().getArtista());
        canciones.removeFirst();
        cargarListaReproduccion(canciones);
+       progressBar.setValue(0);
+
+        Timer timer = new Timer(50, e -> {
+            int value = progressBar.getValue();
+            if (value < 100) {
+                progressBar.setValue(value + 1);
+            } else {
+                if(canciones.size() >= 1){
+                    cargaCancionActual();
+                }else{
+                    ((Timer) e.getSource()).stop();
+                }
+                
+            }
+        });
+        timer.start();
    }
 
     /**
@@ -71,6 +95,7 @@ public class Reproductor extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        panelControles = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
 
@@ -99,18 +124,21 @@ public class Reproductor extends javax.swing.JFrame {
 
         jLabel4.setText("jLabel4");
 
+        javax.swing.GroupLayout panelControlesLayout = new javax.swing.GroupLayout(panelControles);
+        panelControles.setLayout(panelControlesLayout);
+        panelControlesLayout.setHorizontalGroup(
+            panelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 182, Short.MAX_VALUE)
+        );
+        panelControlesLayout.setVerticalGroup(
+            panelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -122,6 +150,19 @@ public class Reproductor extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(panelControles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +178,9 @@ public class Reproductor extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addGap(149, 149, 149))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelControles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -198,5 +241,6 @@ public class Reproductor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelControles;
     // End of variables declaration//GEN-END:variables
 }
