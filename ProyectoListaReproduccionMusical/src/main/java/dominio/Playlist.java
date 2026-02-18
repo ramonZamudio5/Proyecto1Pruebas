@@ -20,6 +20,13 @@ public class Playlist {
         this.canciones = new ArrayList<>();
     }
 
+    public Playlist(String nombre, List<Cancion> canciones) {
+        this.nombre = nombre;
+        this.canciones = canciones;
+    }
+    
+    
+
     public String getNombre() { return nombre; }
     public List<Cancion> getCanciones() { return canciones; }
 
@@ -32,7 +39,11 @@ public class Playlist {
             this.canciones.remove(indice);
         }
     }
-
+    
+    public List<Cancion> getCancion(){
+        return canciones;
+    }
+    
     @Override
     public String toString() {
         return "Playlist{" + "nombre=" + nombre + ", canciones=" + canciones + '}';

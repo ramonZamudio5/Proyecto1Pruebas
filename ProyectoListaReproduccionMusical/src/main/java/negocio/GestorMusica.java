@@ -71,4 +71,9 @@ public class GestorMusica {
             System.out.println("Error: Playlist no encontrada.");
         }
     }
+    
+    public Playlist buscarPlayList(String nombrePlaylist){
+        Optional<Playlist> playlistOpt= repositorio.buscarPlaylist(nombrePlaylist);
+        return new Playlist(nombrePlaylist,playlistOpt.get().getCanciones());
+    }
 }

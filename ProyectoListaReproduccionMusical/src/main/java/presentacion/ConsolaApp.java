@@ -110,7 +110,4 @@ public class ConsolaApp {
         }
     }
 
-    public static void main(String[] args) {
-        new ConsolaApp().iniciar();
-    }
 }

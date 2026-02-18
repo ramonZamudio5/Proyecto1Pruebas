@@ -4,6 +4,9 @@
 
 package com.mycompany.proyectolistareproduccionmusical;
 
+import negocio.GestorMusica;
+import presentacion.MainApp;
+
 /**
  *
  * @author ramonsebastianzamudioayala
@@ -11,6 +14,8 @@ package com.mycompany.proyectolistareproduccionmusical;
 public class ProyectoListaReproduccionMusical {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        GestorMusica gestor = new GestorMusica();
+        MainApp espotifai = new MainApp(gestor);
+        espotifai.setVisible(true);
     }
 }
