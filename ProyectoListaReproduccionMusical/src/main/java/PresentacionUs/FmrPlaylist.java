@@ -31,7 +31,6 @@ public class FmrPlaylist extends javax.swing.JFrame {
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 830));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVolver.png"))); // NOI18N

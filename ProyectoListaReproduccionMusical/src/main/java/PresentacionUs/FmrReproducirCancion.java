@@ -26,26 +26,49 @@ public class FmrReproducirCancion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        btnPaAtras = new javax.swing.JButton();
+        btnPaLante = new javax.swing.JButton();
+        btnPausar = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField1.setOpaque(true);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 350, 30));
 
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVolver.png"))); // NOI18N
         btnVolver.setBorderPainted(false);
         btnVolver.setContentAreaFilled(false);
         getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        btnPaAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/skip_next_filled.png"))); // NOI18N
+        btnPaAtras.setBorderPainted(false);
+        btnPaAtras.setContentAreaFilled(false);
+        btnPaAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaAtrasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPaAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
+
+        btnPaLante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/skip_next_filled_derecha.png"))); // NOI18N
+        btnPaLante.setBorderPainted(false);
+        btnPaLante.setContentAreaFilled(false);
+        getContentPane().add(btnPaLante, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, -1));
+
+        btnPausar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pausar.png"))); // NOI18N
+        btnPausar.setBorderPainted(false);
+        btnPausar.setContentAreaFilled(false);
+        getContentPane().add(btnPausar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
+
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PantallaReproducirCancion.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPaAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaAtrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPaAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,8 +106,10 @@ public class FmrReproducirCancion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPaAtras;
+    private javax.swing.JButton btnPaLante;
+    private javax.swing.JButton btnPausar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
 }
