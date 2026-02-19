@@ -18,14 +18,14 @@ public class RepositorioMusical {
    // "Base de datos" en memoria
     private List<Playlist> playlists = new ArrayList<>();
     private List<Cancion> bibliotecaGeneral = new ArrayList<>();
-
-    public RepositorioMusical() {
-        // Precargamos algunas canciones populares para probar
-        bibliotecaGeneral.add(new Cancion("Givenchy", "Duki", 185));
-        bibliotecaGeneral.add(new Cancion("Mónaco", "Lagos", 210));
-        bibliotecaGeneral.add(new Cancion("LADY GAGA", "Peso Pluma", 205));
-        bibliotecaGeneral.add(new Cancion("Hotel California", "Eagles", 390));
-    }
+//
+//    public RepositorioMusical() {
+//        // Precargamos algunas canciones populares para probar
+//        bibliotecaGeneral.add(new Cancion("Givenchy", "Duki", 185));
+//        bibliotecaGeneral.add(new Cancion("Mónaco", "Lagos", 210));
+//        bibliotecaGeneral.add(new Cancion("LADY GAGA", "Peso Pluma", 205));
+//        bibliotecaGeneral.add(new Cancion("Hotel California", "Eagles", 390));
+//    }
 
     public List<Cancion> obtenerTodasLasCanciones() {
         return bibliotecaGeneral;

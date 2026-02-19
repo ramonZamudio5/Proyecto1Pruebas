@@ -12,6 +12,7 @@ import java.util.List;
  * @author ramonsebastianzamudioayala
  */
 public class Playlist {
+
     private String nombre;
     private List<Cancion> canciones;
 
@@ -24,11 +25,14 @@ public class Playlist {
         this.nombre = nombre;
         this.canciones = canciones;
     }
-    
-    
 
-    public String getNombre() { return nombre; }
-    public List<Cancion> getCanciones() { return canciones; }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public List<Cancion> getCanciones() {
+        return canciones;
+    }
 
     public void agregarCancion(Cancion cancion) {
         this.canciones.add(cancion);
@@ -39,14 +43,14 @@ public class Playlist {
             this.canciones.remove(indice);
         }
     }
-    
-    public List<Cancion> getCancion(){
+
+    public List<Cancion> getCancion() {
         return canciones;
     }
-    
+
     @Override
     public String toString() {
         return "Playlist{" + "nombre=" + nombre + ", canciones=" + canciones + '}';
     }
-    
+
 }

@@ -9,22 +9,55 @@ package dominio;
  * @author ramonsebastianzamudioayala
  */
 public class Cancion {
+
     private String titulo;
+    private String genero;
     private String artista;
     private int duracionSegundos;
 
-    public Cancion(String titulo, String artista, int duracionSegundos) {
+    public Cancion(String titulo, String genero, String artista, int duracionSegundos) {
         this.titulo = titulo;
+        this.genero = genero;
         this.artista = artista;
         this.duracionSegundos = duracionSegundos;
     }
 
-    public String getTitulo() { return titulo; }
-    public String getArtista() { return artista; }
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
+    public int getDuracionSegundos() {
+        return duracionSegundos;
+    }
+
+    public void setDuracionSegundos(int duracionSegundos) {
+        this.duracionSegundos = duracionSegundos;
+    }
 
     @Override
     public String toString() {
-        return titulo + " - " + artista + " (" + duracionSegundos + "s)";
+        return "Cancion{" + "titulo=" + titulo + ", genero=" + genero + ", artista=" + artista + ", duracionSegundos=" + duracionSegundos + '}';
     }
+
 
 }
