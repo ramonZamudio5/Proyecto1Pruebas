@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package DominioUs;
+package itson.tune.dominio;
 
+import itson.tune.dominio.Playlist;
+import itson.tune.dominio.Cancion;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package PresentacionUs;
+package itson.tune.presentacion;
 
 /**
  *
  * @author Pride Factor Black
  */
-public class FmrSeleccionarPlayList extends javax.swing.JFrame {
+public class FmrPlaylist extends javax.swing.JFrame {
 
     /**
-     * Creates new form FmrSeleccionarPlayList
+     * Creates new form FmrPlaylist
      */
-    public FmrSeleccionarPlayList() {
+    public FmrPlaylist() {
         initComponents();
     }
 
@@ -26,32 +26,37 @@ public class FmrSeleccionarPlayList extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAgregarPlaylist = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        btnAgregarCancion = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 830));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAgregarPlaylist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnAgregarPlaylist.png"))); // NOI18N
-        btnAgregarPlaylist.setBorderPainted(false);
-        btnAgregarPlaylist.setContentAreaFilled(false);
-        btnAgregarPlaylist.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnVolver.png"))); // NOI18N
+        btnVolver.setBorderPainted(false);
+        btnVolver.setContentAreaFilled(false);
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        btnAgregarCancion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnAgregarCancion.png"))); // NOI18N
+        btnAgregarCancion.setBorderPainted(false);
+        btnAgregarCancion.setContentAreaFilled(false);
+        btnAgregarCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPlaylistActionPerformed(evt);
+                btnAgregarCancionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 50, 50));
+        getContentPane().add(btnAgregarCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, -1, -1));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PantallaSeleccionarPlayList.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 600, 830));
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PantallaPlayList.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPlaylistActionPerformed
+    private void btnAgregarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCancionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarPlaylistActionPerformed
+    }//GEN-LAST:event_btnAgregarCancionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,26 +75,27 @@ public class FmrSeleccionarPlayList extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FmrSeleccionarPlayList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FmrPlaylist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FmrSeleccionarPlayList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FmrPlaylist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FmrSeleccionarPlayList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FmrPlaylist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FmrSeleccionarPlayList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FmrPlaylist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FmrSeleccionarPlayList().setVisible(true);
+                new FmrPlaylist().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarPlaylist;
+    private javax.swing.JButton btnAgregarCancion;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
 }
