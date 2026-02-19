@@ -15,6 +15,7 @@ import persistencia.RepositorioMusical;
  * @author ramonsebastianzamudioayala
  */
 public class GestorMusica {
+
     private RepositorioMusical repositorio;
 
     public GestorMusica() {
@@ -54,7 +55,7 @@ public class GestorMusica {
     // Lógica de simulación de reproducción
     public void reproducirPlaylist(String nombrePlaylist) {
         Optional<Playlist> playlistOpt = repositorio.buscarPlaylist(nombrePlaylist);
-        
+
         if (playlistOpt.isPresent()) {
             Playlist p = playlistOpt.get();
             System.out.println("\n--- Reproduciendo: " + p.getNombre() + " ---");
@@ -63,7 +64,10 @@ public class GestorMusica {
             } else {
                 for (Cancion c : p.getCanciones()) {
                     System.out.println("Reproduciendo: " + c.getTitulo() + " - " + c.getArtista() + "...");
-                    try { Thread.sleep(1000); } catch (InterruptedException e) {} // Simula tiempo
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                    } // Simula tiempo
                 }
             }
             System.out.println("--- Fin de la reproducción ---\n");
@@ -71,9 +75,9 @@ public class GestorMusica {
             System.out.println("Error: Playlist no encontrada.");
         }
     }
-    
-    public Playlist buscarPlayList(String nombrePlaylist){
-        Optional<Playlist> playlistOpt= repositorio.buscarPlaylist(nombrePlaylist);
-        return new Playlist(nombrePlaylist,playlistOpt.get().getCanciones());
+
+    public Playlist buscarPlayList(String nombrePlaylist) {
+        Optional<Playlist> playlistOpt = repositorio.buscarPlaylist(nombrePlaylist);
+        return new Playlist(nombrePlaylist, playlistOpt.get().getCanciones());
     }
 }

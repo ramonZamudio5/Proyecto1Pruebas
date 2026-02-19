@@ -2,24 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dominio;
+package DominioUs;
 
 /**
  *
- * @author ramonsebastianzamudioayala
+ * @author angel
  */
 public class Cancion {
 
     private String titulo;
+    private String duracion;
     private String genero;
     private String artista;
-    private String duracionSegundos;
 
-    public Cancion(String titulo, String genero, String artista, String duracionSegundos) {
+    public Cancion(String titulo, String duracion, String genero, String artista) {
         this.titulo = titulo;
+        this.duracion = duracion;
         this.genero = genero;
         this.artista = artista;
-        this.duracionSegundos = duracionSegundos;
     }
 
     public String getTitulo() {
@@ -28,6 +28,14 @@ public class Cancion {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
 
     public String getGenero() {
@@ -46,17 +54,9 @@ public class Cancion {
         this.artista = artista;
     }
 
-    public String getDuracionSegundos() {
-        return duracionSegundos;
-    }
-
-    public void setDuracionSegundos(String duracionSegundos) {
-        this.duracionSegundos = duracionSegundos;
-    }
-
     @Override
     public String toString() {
-        return "Cancion{" + "titulo=" + titulo + ", genero=" + genero + ", artista=" + artista + ", duracionSegundos=" + duracionSegundos + '}';
+        return "Cancion{" + "titulo=" + titulo + ", duracion=" + duracion + ", genero=" + genero + ", artista=" + artista + '}';
     }
 
 }
