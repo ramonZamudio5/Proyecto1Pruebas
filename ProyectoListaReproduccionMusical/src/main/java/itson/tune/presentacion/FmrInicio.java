@@ -4,17 +4,109 @@
  */
 package itson.tune.presentacion;
 
+import itson.tune.dominio.Playlist;
+
 /**
  *
  * @author Pride Factor Black
  */
 public class FmrInicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaInicio
-     */
-    public FmrInicio() {
+    private final Navegador navegador;
+
+    public FmrInicio(Navegador navegador) {
+        this.navegador = navegador;
         initComponents();
+        setLocationRelativeTo(null);
+        configurarAcciones();
+    }
+
+    private void configurarAcciones() {
+        btnAgregarPlaylist.addActionListener(e -> {
+            Object[] datos = mostrarDialogoCrearPlaylist();
+            if (datos == null) {
+                return;
+            }
+
+            String nombre = (String) datos[0];
+            java.awt.Image imagen = (java.awt.Image) datos[1];
+
+            try {
+                Playlist nueva = navegador.getPlaylistBO().crearPlaylist(nombre);
+                if (imagen != null) {
+                    nueva.setImagen(imagen);
+                }
+                navegador.irASeleccionarPlaylist();
+            } catch (IllegalArgumentException ex) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        });
+    }
+
+    /**
+     * Muestra un diálogo personalizado que pide nombre e imagen. Retorna null
+     * si el usuario cancela.
+     */
+    private Object[] mostrarDialogoCrearPlaylist() {
+        javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.BorderLayout(10, 10));
+        panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        javax.swing.JTextField txtNombre = new javax.swing.JTextField(20);
+        javax.swing.JPanel panelNombre = new javax.swing.JPanel(new java.awt.BorderLayout(5, 0));
+        panelNombre.add(new javax.swing.JLabel("Nombre:"), java.awt.BorderLayout.WEST);
+        panelNombre.add(txtNombre, java.awt.BorderLayout.CENTER);
+
+        javax.swing.JLabel lblPreview = new javax.swing.JLabel("Sin imagen",
+                javax.swing.SwingConstants.CENTER);
+        lblPreview.setPreferredSize(new java.awt.Dimension(150, 150));
+        lblPreview.setBorder(javax.swing.BorderFactory.createLineBorder(
+                new java.awt.Color(0x2A, 0x5A, 0x52), 2));
+        lblPreview.setBackground(new java.awt.Color(0x0F, 0x2B, 0x27));
+        lblPreview.setOpaque(true);
+        lblPreview.setForeground(new java.awt.Color(0xA0, 0xC0, 0xB8));
+
+        java.awt.Image[] imagenElegida = {null};
+
+        javax.swing.JButton btnElegirImg = new javax.swing.JButton("Elegir imagen...");
+        btnElegirImg.addActionListener(ev -> {
+            javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
+            chooser.setDialogTitle("Selecciona una imagen");
+            chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
+                    "Imágenes (jpg, png, gif)", "jpg", "jpeg", "png", "gif"));
+
+            if (chooser.showOpenDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+                java.awt.Image img = new javax.swing.ImageIcon(
+                        chooser.getSelectedFile().getAbsolutePath()).getImage();
+                imagenElegida[0] = img;
+
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(
+                        img.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH));
+                lblPreview.setIcon(icon);
+                lblPreview.setText("");
+            }
+        });
+
+        javax.swing.JPanel panelImagen = new javax.swing.JPanel(new java.awt.BorderLayout(5, 5));
+        panelImagen.add(lblPreview, java.awt.BorderLayout.CENTER);
+        panelImagen.add(btnElegirImg, java.awt.BorderLayout.SOUTH);
+
+        panel.add(panelNombre, java.awt.BorderLayout.NORTH);
+        panel.add(panelImagen, java.awt.BorderLayout.CENTER);
+
+        int resultado = javax.swing.JOptionPane.showConfirmDialog(
+                this, panel, "Nueva Playlist",
+                javax.swing.JOptionPane.OK_CANCEL_OPTION,
+                javax.swing.JOptionPane.PLAIN_MESSAGE);
+
+        if (resultado != javax.swing.JOptionPane.OK_OPTION) {
+            return null;
+        }
+        if (txtNombre.getText().isBlank()) {
+            return null;
+        }
+
+        return new Object[]{txtNombre.getText().trim(), imagenElegida[0]};
     }
 
     /**
@@ -26,16 +118,18 @@ public class FmrInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn = new javax.swing.JButton();
+        btnAgregarPlaylist = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnmas.png"))); // NOI18N
-        btn.setBorderPainted(false);
-        btn.setContentAreaFilled(false);
-        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, -1, -1));
+        btnAgregarPlaylist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnPantallaInicio.png"))); // NOI18N
+        btnAgregarPlaylist.setBorder(null);
+        btnAgregarPlaylist.setBorderPainted(false);
+        btnAgregarPlaylist.setContentAreaFilled(false);
+        btnAgregarPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btnAgregarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 260, 250));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PantallaInicio.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 830));
@@ -43,46 +137,9 @@ public class FmrInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FmrInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FmrInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FmrInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FmrInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FmrInicio().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
+    private javax.swing.JButton btnAgregarPlaylist;
     private javax.swing.JLabel fondo;
     // End of variables declaration//GEN-END:variables
 }

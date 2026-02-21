@@ -4,6 +4,7 @@
  */
 package itson.tune.dominio;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Playlist {
     private final String id;
     private String nombre;
     private final List<Cancion> canciones;
+    private Image imagen;
 
     public Playlist(String id, String nombre) {
         if (id == null || id.isBlank()) {
@@ -93,6 +95,14 @@ public class Playlist {
      */
     public List<Cancion> getCanciones() {
         return Collections.unmodifiableList(canciones);
+    }
+
+    public Image getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Image imagen) {
+        this.imagen = imagen;
     }
 
     public int tamaño() {

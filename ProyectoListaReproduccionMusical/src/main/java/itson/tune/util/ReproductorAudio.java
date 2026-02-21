@@ -18,11 +18,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author payde
  */
 public class ReproductorAudio {
-    
+
     public enum Estado {
         DETENIDO, REPRODUCIENDO, ENPAUSA
     }
-    
+
     private Clip clip;
     private Estado estado = Estado.DETENIDO;
     private long posicionPausa = 0;
@@ -50,6 +50,20 @@ public class ReproductorAudio {
         clip.start();
         posicionPausa = 0;
         estado = estado.REPRODUCIENDO;
+    }
+
+    public void setVolumen(float volumen) {
+        if (clip == null || !clip.isOpen()) {
+            return;
+        }
+        try {
+            javax.sound.sampled.FloatControl control = (javax.sound.sampled.FloatControl) clip.getControl(javax.sound.sampled.FloatControl.Type.MASTER_GAIN);
+            float dB = (float) (Math.log10(Math.max(volumen, 0.0001f)) * 20);
+            dB = Math.max(control.getMinimum(), Math.min(control.getMaximum(), dB));
+            control.setValue(dB);
+        } catch (IllegalArgumentException ex) {
+
+        }
     }
 
     public void pausa() {

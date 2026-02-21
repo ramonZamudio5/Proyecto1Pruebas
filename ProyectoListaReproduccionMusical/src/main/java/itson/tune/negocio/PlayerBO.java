@@ -20,7 +20,7 @@ public class PlayerBO {
 
     private final ReproductorAudio reproductorAudio;
 
-    private List<Cancion> cola;       
+    private List<Cancion> cola;
     private int currentIndex = -1;
 
     public PlayerBO(ReproductorAudio reproductorAudio) {
@@ -28,10 +28,12 @@ public class PlayerBO {
     }
 
     public void cargarYReproducir(List<Cancion> canciones, int startIndex) {
-        if (canciones == null || canciones.isEmpty())
+        if (canciones == null || canciones.isEmpty()) {
             throw new IllegalArgumentException("La lista de canciones no puede estar vacía.");
-        if (startIndex < 0 || startIndex >= canciones.size())
+        }
+        if (startIndex < 0 || startIndex >= canciones.size()) {
             throw new IndexOutOfBoundsException("Índice de inicio inválido: " + startIndex);
+        }
 
         this.cola = canciones;
         this.currentIndex = startIndex;
@@ -51,25 +53,39 @@ public class PlayerBO {
     }
 
     public void siguiente() {
-        if (cola == null || cola.isEmpty()) return;
+        if (cola == null || cola.isEmpty()) {
+            return;
+        }
         currentIndex = (currentIndex + 1) % cola.size();
-       reproducirActual();
+        reproducirActual();
     }
 
     public void previo() {
-        if (cola == null || cola.isEmpty()) return;
+        if (cola == null || cola.isEmpty()) {
+            return;
+        }
         currentIndex = (currentIndex - 1 + cola.size()) % cola.size();
         reproducirActual();
     }
 
     public Optional<Cancion> obtenerCancionActual() {
-        if (cola == null || currentIndex < 0 || currentIndex >= cola.size()) return Optional.empty();
+        if (cola == null || currentIndex < 0 || currentIndex >= cola.size()) {
+            return Optional.empty();
+        }
         return Optional.of(cola.get(currentIndex));
     }
 
-    public ReproductorAudio.Estado getEstado() { return reproductorAudio.getEstado(); }
-    public int obtenerPosicionActualSegundos() { return reproductorAudio.obtenerPosicionActualSegundos(); }
-    public int obtenerDuracionTotalSegundos() { return reproductorAudio.obtenerDuracionTotalSegundos(); }
+    public ReproductorAudio.Estado getEstado() {
+        return reproductorAudio.getEstado();
+    }
+
+    public int obtenerPosicionActualSegundos() {
+        return reproductorAudio.obtenerPosicionActualSegundos();
+    }
+
+    public int obtenerDuracionTotalSegundos() {
+        return reproductorAudio.obtenerDuracionTotalSegundos();
+    }
 
     private void reproducirActual() {
         Cancion cancion = cola.get(currentIndex);
@@ -85,7 +101,14 @@ public class PlayerBO {
     }
 
     public static class PlayerException extends RuntimeException {
-        public PlayerException(String message, Throwable cause) { super(message, cause); }
+
+        public PlayerException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
-    
+
+    public void setVolumen(float volumen) {
+        reproductorAudio.setVolumen(volumen);
+    }
+
 }
